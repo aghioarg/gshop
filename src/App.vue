@@ -6,11 +6,22 @@
 </template>
 
 <script>
-	import FooterGuide from './components/FooterGuide/FooterGuide.vue'
+	//import {mapActions} from 'vuex'
+	import FooterGuide from './components/FooterGuide/FooterGuide.vue'	
+
 	export default{
+
+		// mounted() {
+		// 	this.$store.dispatch('getShops')
+		//this.getShops()
+		//},
+		// methods:{
+		//  	...mapActions(['getShops'])
+		//  },
 		components:{
 			"FooterGuide":FooterGuide
-		}
+		}, 
+		
 	}
 </script>
 

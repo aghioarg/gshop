@@ -1,14 +1,14 @@
 <template>
 	<section class="msite">
 		<!-- 首页头部 -->
-		<header-top title="昌平区北七家宏福科技园(337省道北)">
+		<HeaderTop :title="address.name">
 			 <span class="header_search" slot="left">
 					<i class="iconfont icon-sousuo"></i>
 			</span>		
 			<span class="header_login" slot="right">
 					<span class="header_login_text">登录|注册</span>
 				  </span>
-		</header-top>
+		</HeaderTop>
 	  <!--首页导航-->
 	  <nav class="msite_nav">
 	    <div class="swiper-container">
@@ -128,16 +128,20 @@
 	  </div> 
 	</section>
 </template>
-
+	
 <script>	
+	
 	import Swiper from 'swiper'
 	import 'swiper/dist/css/swiper.min.css'
 	
 	import HeaderTop from '../../components/HeaderTop/HeaderTop.vue'
 	import ShopList from '../../components/ShopList/ShopList.vue'	
-	
+	import{mapState} from 'vuex'
 	export default{
 		mounted(){
+			this.$store.dispatch('getAddress')
+			this.$store.dispatch('getCategorys')
+			this.$store.dispatch('getShops')
 			//创建一个swiper实例对象，来实现轮播
 			new Swiper('.swiper-container',{
 				loop:true,  //可以循环轮播
@@ -147,6 +151,9 @@
 				},				
 			})
 		},
+		 computed:{
+		 	...mapState(['address','categorys'])
+		 },
 		components:{
 			'HeaderTop':HeaderTop,
 			'ShopList':ShopList
